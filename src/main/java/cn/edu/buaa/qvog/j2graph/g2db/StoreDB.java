@@ -375,8 +375,6 @@ public class StoreDB {
         }
 
         System.out.println("Edges added");
-
-        System.exit(0);
     }
 
     private static int getLineNumber(String lineno) {
@@ -497,6 +495,8 @@ public class StoreDB {
 
         @Override
         public void run() {
+            System.err.printf("Adding %d vertices%n", vertices.size());
+
             // convert traversal source to traversal
             var it = vertices.iterator();
             var vertex = it.next();
@@ -536,6 +536,8 @@ public class StoreDB {
 
         @Override
         public void run() {
+            System.err.printf("Adding %d edges%n", edges.size());
+
             var it = edges.iterator();
             var edge = it.next();
             var traversal = g.addE(edge.label()).from(__.V(edge.from())).to(__.V(edge.to()));

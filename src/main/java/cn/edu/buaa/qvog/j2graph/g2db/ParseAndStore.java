@@ -27,13 +27,12 @@ public class ParseAndStore {
         AllFileTotal allFileTotal = oldReadFileAndParse(fileStartList);
         //AllFileTotal allFileTotal = newReadFileAndParse(fileStartList);
         long endTime = System.currentTimeMillis();
-        System.out.print("本地解析图用时:");
-        System.out.println(endTime - startTime);
-        // oldStoreDB(allFileTotal);
-        // oldStoreDB_2(allFileTotal);
+        System.out.printf("Read and parse time: %dms\n", endTime - startTime);
+
+        startTime = System.currentTimeMillis();
         store(allFileTotal);
-        //presentStoreDB(allFileTotal);
-        //Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+        endTime = System.currentTimeMillis();
+        System.out.printf("Store to database time: %dms\n", endTime - startTime);
     }
 
     public static AllFileTotal oldReadFileAndParse(List<FileStart> fileStartList) throws IOException {

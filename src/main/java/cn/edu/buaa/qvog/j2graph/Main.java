@@ -22,9 +22,11 @@ public class Main {
         List<FileStart> fileStartList = Writer.start();
         SpoonCGProcessor.start();
         long endTime = System.currentTimeMillis();
-        System.out.print("Elapsed time in milliseconds: ");
-        System.out.println(endTime - startTime);
+        System.out.printf("Graph construction time: %dms\n", endTime - startTime);
+
         ParseAndStore.start(fileStartList);
+
+        System.exit(0);
     }
 
     private static CommandLine parseArgs(String[] args) {

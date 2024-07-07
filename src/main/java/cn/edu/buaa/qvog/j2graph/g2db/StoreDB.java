@@ -348,7 +348,8 @@ public class StoreDB {
                 Long fromId = vertexMap.get(fromKey);
                 Long toId = vertexMap.get(toKey);
                 if (fromId != null && toId != null) {
-                    edges.add(new EdgeInfo("dfg", fromId, toId));
+                    // The actual direction of the edge is from the toNode to the fromNode
+                    edges.add(new EdgeInfo("dfg", toId, fromId));
                     if (edges.size() >= BATCH_SIZE) {
                         edgeExecutor.submit(new EdgeDaemon(edges, g, vertexMap));
                         edges = new ArrayList<>();

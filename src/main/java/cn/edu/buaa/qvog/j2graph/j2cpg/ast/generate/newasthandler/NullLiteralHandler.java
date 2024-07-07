@@ -9,7 +9,7 @@ public class NullLiteralHandler extends Handler {
         this.initialASTNode = initialASTNode;
     }
 
-    public String build() {
-        return "null";
+    public Object build() {
+        return null;
     }
 }

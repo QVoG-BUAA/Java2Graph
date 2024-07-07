@@ -9,8 +9,8 @@ public class NumberLiteralHandler extends Handler {
         this.initialASTNode = initialASTNode;
     }
 
-    public String build() {
-        return initialASTNode.label;
+    public Integer build() {
+        return Integer.parseInt(initialASTNode.label);
     }
 
 }

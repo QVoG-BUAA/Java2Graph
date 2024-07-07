@@ -2,7 +2,9 @@
 
 > Using JDT to analyse Java code, author ppz
 
-## 项目结构
+## 项目构建
+
+在 IDEA 中，执行 `maven install` 即可构建项目，生成的 jar 包位于 `target` 目录下。
 
 Java CPG 的构建主要分为三个模块：
 
@@ -14,20 +16,24 @@ Java CPG 的构建主要分为三个模块：
 
 ## 项目运行
 
-首先先执行前两个模块的主函数：
+项目运行时，需要提供配置文件。在 `Java2Graph.jar` 同级目录下，创建 `config.json`，格式如下，其中指定了 Gremlin 服务器的地址。
 
-j2astcfgpg.src.main.java.graphviz.Writer.main()
+```json
+{
+    "host": <ip>,
+    "port": 8182
+}
+```
 
-j2cg.src.main.java.cg.SpoonCGProcessor.main()
+该配置文件的路径可以通过命令行参数指定，完整的命令行参数如下。
 
-再执行最后一个模块的主函数
+```
+usage: Java2Graph
+ -c,--config <arg>      configuration file path
+ -h,--help              print this message
+ -i,--input <input>     input directory path
+ -o,--output <output>   output directory path
+```
 
-g2db.src.main.ParseAndStore.main()
-
-即可实现将java代码转换为数据库中的图。
-
-#### 注明
-
-需要检测的整个java项目或java代码放在./input下，四种中间图文件将储存在./output下。
-
-./spooned文件夹下存储的是冗余信息，后续考虑删除。
+将待测项目放入 `input` 目录下，执行 `java -jar Java2Graph.jar -i input -o output` 即构建 CPG，并存储至 Gremlin 服务器。
+`output` 目录中存储了生成过程中的临时文件。

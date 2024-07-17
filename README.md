@@ -1,4 +1,4 @@
-# J2CPG
+# Java2Graph
 
 > Using JDT to analyse Java code, author ppz
 
